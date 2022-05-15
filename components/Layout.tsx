@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import { Meta } from "./Meta";
 import { Body } from "./Body";
 import { Header } from "./Header";
-import { ToggleColorModeButton } from "./ToggleColorModeButton";
+import { ColorModeProvider } from "../components/ColorModeProvider";
+import { Nav } from "./Nav";
 
 type Props = {
   title?: string;
@@ -19,14 +20,16 @@ export const Layout: NextPage<Props> = ({
 }) => {
   return (
     <>
-      <section className={`min-h-screen`}>
-        <section className="container mx-auto">
-          <Meta title={title} description={description} />
-          <Header title={title} date={date} />
-          <ToggleColorModeButton />
-          <Body>{children}</Body>
+      <ColorModeProvider>
+        <Meta title={title} description={description} />
+        <section className="min-h-screen container mx-auto">
+          <section className="mx-3">
+            <Nav />
+            <Header title={title} date={date} />
+            <Body>{children}</Body>
+          </section>
         </section>
-      </section>
+      </ColorModeProvider>
     </>
   );
 };

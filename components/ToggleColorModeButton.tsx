@@ -6,9 +6,9 @@ export const ToggleColorModeButton: FunctionComponent = () => {
 
   return (
     <>
-      <button className="text-4xl m-2" onClick={toggleColorMode}>
+      <a className="text-2xl" onClick={toggleColorMode}>
         {isDarkMode ? "🌞" : "🌝"}
-      </button>
+      </a>
     </>
   );
 };

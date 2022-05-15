@@ -4,7 +4,6 @@ import { getPostBySlug, getAllPosts } from "../../lib/post";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
 import { Layout } from "../../components/Layout";
-import styles from "./markdown.module.css";
 
 type Props = {
   post: PostType;
@@ -21,10 +20,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
   return (
     <Layout title={post.title} date={post.date}>
       <>
-        <div
-          className={styles["markdown"]}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </>
     </Layout>
   );

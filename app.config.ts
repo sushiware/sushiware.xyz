@@ -5,4 +5,5 @@ export const AppConfig = {
   url: "https://app.cryptomanna.xyz",
   locale: "ja",
   twitter: "@sushiware",
+  github: "nasjp",
 };

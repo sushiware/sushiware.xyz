@@ -25,8 +25,13 @@ const useColorMode = () => {
   const [isDarkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const defaultDarkMode = localStorage.getItem("darkMode") === "true";
-    if (defaultDarkMode) {
+    const systemDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    const noDarkMode = localStorage.getItem("darkMode") === "false";
+
+    if (!noDarkMode && systemDarkMode) {
       applyDarkMode();
       return;
     }

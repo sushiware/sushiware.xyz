@@ -7,7 +7,7 @@ type Props = {
 export const Body: FunctionComponent<Props> = ({ children }) => {
   return (
     <>
-      <main className="mx-2">{children}</main>
+      <main>{children}</main>
     </>
   );
 };
