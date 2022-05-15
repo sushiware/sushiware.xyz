@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100;
+}
+
 a {
-  @apply text-neutral-200 border-b-neutral-200 border-b-2;
+  @apply text-neutral-400 border-b-neutral-400 border-b-2;
 }

@@ -16,9 +16,11 @@ const Home: NextPage<Props> = ({ allPosts }) => {
           {allPosts.map((post) => {
             return (
               <li key={post.slug}>
-                <Link href={`/posts/${post.slug}`}>
-                  <a className="text-2xl">📝 {post.title}</a>
-                </Link>
+                <div className="mb-2">
+                  <Link href={`/posts/${post.slug}`}>
+                    <a className="text-2xl">📝 {post.title}</a>
+                  </Link>
+                </div>
                 <p className="text-2xl">{post.summary}</p>
               </li>
             );
