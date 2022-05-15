@@ -60,7 +60,11 @@ export const Meta = (props: Props) => {
         />
         <meta
           property="og:title"
-          content={`${props.title} | ${AppConfig.title}`}
+          content={
+            props.title
+              ? `${props.title} | ${AppConfig.site_name}`
+              : AppConfig.site_name
+          }
           key="og:title"
         />
         <meta
