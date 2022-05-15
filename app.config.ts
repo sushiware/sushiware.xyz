@@ -1,7 +1,7 @@
 export const AppConfig = {
   site_name: "sushiware.xyz",
   title: "sushiware.xyz",
-  description: "スマートコントラクトにまつわる自身のための灯台",
+  description: "スマートコントラクト備忘録🌏💻",
   url: "https://sushiware.xyz",
   locale: "ja",
   twitter: "@sushiware",
