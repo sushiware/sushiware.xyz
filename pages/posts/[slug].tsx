@@ -18,7 +18,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
   }
 
   return (
-    <Layout title={post.title} date={post.date}>
+    <Layout title={post.title} date={post.date} description={post.summary}>
       <>
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </>

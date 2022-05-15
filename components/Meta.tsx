@@ -83,7 +83,7 @@ export const Meta = (props: Props) => {
           // content={window && window.location.origin + "/og.png"}
           content={`${AppConfig.url}/ogp.png`}
         />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content={AppConfig.twitter} />
       </Head>
     </>
