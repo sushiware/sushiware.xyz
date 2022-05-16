@@ -1,7 +1,7 @@
 import fs from "fs";
 import { Feed } from "feed";
 import { AppConfig } from "../app.config";
-import { getAllPosts, Post } from "./post";
+import { Post } from "./post";
 import { markdownToHtml } from "./markdownToHtml";
 
 export const generatedRssFeed = async (posts: Post[]) => {
@@ -13,20 +13,21 @@ export const generatedRssFeed = async (posts: Post[]) => {
   };
 
   const feed = new Feed({
-    title: AppConfig.site_name,
-    description: AppConfig.description,
     id: baseUrl,
-    link: baseUrl,
-    language: "ja",
-    image: `${baseUrl}/ogp.png`,
-    copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
+    title: AppConfig.site_name,
     updated: date,
-    author: author,
+    language: AppConfig.locale,
     feedLinks: {
       rss2: `${baseUrl}/rss/feed.xml`,
       json: `${baseUrl}/rss/feed.json`,
       atom: `${baseUrl}/rss/atom.xml`,
     },
+    author: author,
+    link: baseUrl,
+    description: AppConfig.description,
+    image: `${baseUrl}/ogp.png`,
+    favicon: `${baseUrl}/favicon.ico`,
+    copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
   });
 
   const postFeeds = await Promise.all(
