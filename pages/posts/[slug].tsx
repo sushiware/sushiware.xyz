@@ -1,17 +1,17 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { getPostBySlug, getAllPosts } from "../../lib/post";
-import markdownToHtml from "../../lib/markdownToHtml";
-import PostType from "../../types/post";
+import { getPostBySlug, getAllPosts, Post } from "../../lib/post";
+import { markdownToHtml } from "../../lib/markdownToHtml";
 import { Layout } from "../../components/Layout";
+import { NextPage } from "next";
 
 type Props = {
-  post: PostType;
-  morePosts: PostType[];
+  post: Post;
+  morePosts: Post[];
   preview?: boolean;
 };
 
-const Post = ({ post, morePosts, preview }: Props) => {
+const Post: NextPage<Props> = ({ post, morePosts, preview }) => {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -34,7 +34,7 @@ type Params = {
   };
 };
 
-export async function getStaticProps({ params }: Params) {
+export const getStaticProps = async ({ params }: Params) => {
   const post = getPostBySlug(params.slug, [
     "title",
     "date",
@@ -42,6 +42,7 @@ export async function getStaticProps({ params }: Params) {
     "content",
     "summary",
   ]);
+
   const content = await markdownToHtml(post.content || "");
 
   return {
@@ -52,9 +53,9 @@ export async function getStaticProps({ params }: Params) {
       },
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const posts = getAllPosts(["slug"]);
 
   return {
@@ -67,4 +68,4 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   };
-}
+};

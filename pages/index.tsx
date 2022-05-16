@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import type Post from "../types/post";
-import { getAllPosts } from "../lib/post";
+import { getAllPosts, Post } from "../lib/post";
 import { Layout } from "../components/Layout";
+import { generatedRssFeed } from "../lib/rssFeed";
 
 type Props = {
   allPosts: Post[];
@@ -35,6 +35,8 @@ export default Home;
 
 export const getStaticProps = async () => {
   const allPosts = getAllPosts(["title", "date", "slug", "content", "summary"]);
+
+  await generatedRssFeed(allPosts);
 
   return {
     props: { allPosts },

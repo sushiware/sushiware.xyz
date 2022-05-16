@@ -1,5 +1,4 @@
 import { FunctionComponent } from "react";
-import { AppConfig } from "../app.config";
 
 type Props = {
   href: string;
