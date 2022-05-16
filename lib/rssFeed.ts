@@ -34,9 +34,9 @@ export const generatedRssFeed = async (posts: Post[]) => {
     posts.map(async (post) => {
       const url = `${baseUrl}/${post.slug}`;
       return {
+        id: url,
         title: post.title,
         description: post.summary,
-        id: url,
         link: url,
         content: await markdownToHtml(post.content),
         date: new Date(post.date),
