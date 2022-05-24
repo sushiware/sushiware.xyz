@@ -52,3 +52,11 @@ pre {
   @apply border-2 rounded-xl p-2 overflow-x-scroll;
   @apply border-neutral-700 dark:border-yellow-200;
 }
+
+ol > li {
+  @apply list-decimal ml-6;
+}
+
+ul > li {
+  @apply list-disc ml-6;
+}
