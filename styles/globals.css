@@ -33,5 +33,22 @@ h3 {
 
 a,
 button {
-  @apply text-neutral-400 border-b-neutral-400 border-b-2 cursor-pointer;
+  @apply border-b-black dark:border-b-white border-b-2 cursor-pointer;
+}
+
+main a {
+  @apply before:content-['👉'];
+}
+
+code {
+  @apply text-orange-400 dark:text-yellow-200;
+}
+
+pre > code {
+  @apply text-neutral-700 dark:text-neutral-200;
+}
+
+pre {
+  @apply border-2 rounded-xl p-2 overflow-x-scroll;
+  @apply border-neutral-700 dark:border-yellow-200;
 }

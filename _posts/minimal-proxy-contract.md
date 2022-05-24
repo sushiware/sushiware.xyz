@@ -106,7 +106,7 @@ contract LogicContractFactory {
 
 `cloneDeterministic`アドレスのロジックを呼び出す`Proxy`コントラクトをデプロイしてくれる。
 
-渡した`salt`を元に決定論的にアドレスを生成する。
+渡した salt を元に決定論的にアドレスを生成する。
 
 あとは普通のコントラクトのようにメソッドを呼び出してやれば良いだけ。
 

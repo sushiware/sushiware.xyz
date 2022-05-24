@@ -18,7 +18,7 @@ const Home: NextPage<Props> = ({ allPosts }) => {
               <li key={post.slug}>
                 <div>
                   <Link href={`/posts/${post.slug}`}>
-                    <a>📝 {post.title}</a>
+                    <a>📝{post.title}</a>
                   </Link>
                 </div>
                 <p>{post.summary}</p>
