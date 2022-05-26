@@ -3,7 +3,7 @@ title: "Smart Contractで配列をシャッフルする"
 date: "2022-05-26"
 ---
 
-安全な乱数を使用して配列をシャッフルするためには Chainlink VRF 等の Oracle を使用するしかないが、今回は安全である必要がない乱数で十分なので実装方法を考えた。
+今回は安全である必要がない乱数で十分な場合の配列のシャッフル方法を考えた。
 
 ## 今回のユースケース
 
@@ -22,7 +22,9 @@ tokenId が 0 から 999 までだとすると 0 から 999 までの数値を �
 2. それをシャッフルする。
 3. tokenId でインデックスアクセスすれば、luckyNumber が取得できる。
 
-必要になる配列をシャッフルする方法を考える。
+考えるべきは 2
+
+配列をシャッフルする方法を考える。
 
 ## Fisher-Yates shuffle
 
@@ -55,12 +57,14 @@ function _fisherYatesShuffleLuckyNumbers() internal {
 全体はこちら
 
 ```java
+pragma solidity 0.8.13;
+
 import {ERC721A} from "ERC721A/contracts/ERC721A.sol";
 
-contract AwesomeNFT is ERC721A {
+contract FisherYatesShuffleNFT is ERC721A {
     uint256 public constant MAX_SUPPLY = 1000;
 
-    uint256[] _luckyNumbers;
+    uint256[] private _luckyNumbers;
 
     address public constant VALUTS = 0x0000000000200020000000200000000200000000;
 
@@ -83,16 +87,18 @@ contract AwesomeNFT is ERC721A {
     }
 
     function _fisherYatesShuffleLuckyNumbers() internal {
-        uint256 salt = uint256(keccak256(abi.encodePacked(block.timestamp)));
+        bytes32 salt = keccak256(abi.encodePacked(block.timestamp));
         uint256 length = _luckyNumbers.length;
         for (uint256 i = length - 1; i > 0; i--) {
-            uint256 j = salt % i;
+            salt = keccak256(abi.encodePacked(salt));
+            uint256 j = uint256(salt) % i;
             uint256 temp = _luckyNumbers[i];
             _luckyNumbers[i] = _luckyNumbers[j];
             _luckyNumbers[j] = temp;
         }
     }
 }
+
 ```
 
 いいかんじ。
