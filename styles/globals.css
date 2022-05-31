@@ -55,9 +55,11 @@ pre {
 }
 
 ol > li {
+  @apply break-words;
   @apply list-decimal ml-6;
 }
 
 ul > li {
+  @apply break-words;
   @apply list-disc ml-6;
 }

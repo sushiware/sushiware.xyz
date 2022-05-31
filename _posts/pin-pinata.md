@@ -3,7 +3,16 @@ title: "PinataにNFTのmetadataをpinする"
 date: "2022-05-31"
 ---
 
-NFT の生成のために、pinata を使って ipfs に画像を pin してからその画像を json に埋め込んで、metadata を pin したい。
+NFT の生成のために、pinata を使って metadata を pin したい。
+
+## やりたいこと
+
+1. 任意の directory 以下の NFT の画像を pin する
+2. `ipfs://{CID}/images/1.png`を json に埋め込む
+3. 任意の directory 以下に json ファイルを保存
+4. json を `ipfs://{CID}/metadata/1.json`という形で pin する
+
+という流れで metadata を pin したい。
 
 ## Pinata API
 
@@ -11,7 +20,7 @@ NFT の生成のために、pinata を使って ipfs に画像を pin してか�
 
 アカウントマークを押したら API Key のマークがあるのでそこから生成。
 
-Admin で作成
+Admin で作成する。
 
 ## スクリプト
 
@@ -21,7 +30,7 @@ Go で作成
 
 ### Healthcheck
 
-接続を確認
+接続を確認するためのメソッド
 
 ```go
 func (s *PinataClient) Healthcheck() error {
@@ -57,9 +66,9 @@ func (s *PinataClient) Healthcheck() error {
 
 ### Pin Directory
 
-`ipfs://bafybeifexwwff6gh4lrqacodnt3y7qzoydx7sljhgrgz5rbnuywspopdzu/images/1.png`のようにアクセスしたいので
+`ipfs://{CID}/images/1.png`のようにアクセスしたいので
 
-ディレクトリを前提に設計
+ディレクトリを pin する前提で実装。
 
 ```go
 func (c *PinataClient) PinDir(contents [][]byte, names []string, dir string, metadata *PinataMetadata) (*PinResult, error) {
@@ -114,13 +123,6 @@ func (c *PinataClient) PinDir(contents [][]byte, names []string, dir string, met
 	return result, nil
 }
 ```
-
-これを使えば
-
-1. 任意の directory 以下の NFT の画像を pin する
-2. `ipfs://bafybeifexwwff6gh4lrqacodnt3y7qzoydx7sljhgrgz5rbnuywspopdzu/images/1.png`を json に埋め込む
-3. 任意の directory 以下に json ファイルを保存
-4. json を pin する
 
 大したことはやっていないが、
 
