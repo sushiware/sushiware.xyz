@@ -41,6 +41,7 @@ main a {
 }
 
 code {
+  @apply break-words;
   @apply text-orange-400 dark:text-yellow-200;
 }
 
