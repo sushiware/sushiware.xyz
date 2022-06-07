@@ -88,8 +88,35 @@ private や internal のメソッドはテストできない。
 
 RSpec の it_behaves_like に近いと思う。なので、名前は何でも良い。
 
+## OpenZeppelin Test Helpers
+
+[Test Helpers - OpenZeppelin Docs](https://docs.openzeppelin.com/test-helpers/0.5/)
+
+`expectRevert`だけでも相当便利
+
+```typescript
+await expectRevert(
+  this.erc20.transfer(constants.ZERO_ADDRESS, this.value, { from: sender }),
+  "ERC20: transfer to the zero address"
+);
+```
+
+インストールはこちら
+
+[hardhat-web3](https://hardhat.org/plugins/nomiclabs-hardhat-web3#installation)
+
+(ちなみに、まだ使ったことはない。今度使う)
+
+## Moloch Testing Guide
+
+[moloch/test](https://github.com/MolochVentures/moloch/tree/master/test)
+
+solidity のテスティングガイドとしては最も有用だと思う。
+
+必読
+
 ---
 
 以上。
 
-新しいのを随時更新する(かも)。
+新しいのを随時更新する
