@@ -55,7 +55,9 @@ export const getAllPosts = (fields: string[] = []): Post[] => {
 };
 
 export const summary = (content: string) => {
-  const summary = content.split("\n").find((line) => line.trim() !== "") || "";
-  summary.length > 100 ? summary.slice(0, 100) + "..." : summary;
-  return summary;
+  const first = content.split("\n").find((line) => line.trim() !== "") || "";
+
+  const summary = first.lastIndexOf("。") !== -1 ? first.slice(0, -1) : first;
+
+  return summary + "...";
 };
