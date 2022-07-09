@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllPosts, Post } from "../lib/post";
 import { Layout } from "../components/Layout";
 import { generatedRssFeed } from "../lib/rssFeed";
+import { generateSitemap } from "../lib/sitemap";
 
 type Props = {
   allPosts: Post[];
@@ -35,6 +36,7 @@ export const getStaticProps = async () => {
   const allPosts = getAllPosts(["title", "date", "slug", "content", "summary"]);
 
   await generatedRssFeed(allPosts);
+  await generateSitemap(allPosts);
 
   return {
     props: { allPosts },
