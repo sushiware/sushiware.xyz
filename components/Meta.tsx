@@ -46,6 +46,7 @@ export const Meta = (props: Props) => {
           href={`${router.basePath}/favicon.ico`}
           key="favicon"
         />
+        <meta property="lang" content={AppConfig.locale} />
         <title>
           {props.title
             ? `${props.title} | ${AppConfig.site_name}`
